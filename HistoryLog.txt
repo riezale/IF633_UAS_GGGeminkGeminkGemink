@@ -1,1 +1,10 @@
-a
+12 April 2021
+Update
+- Penambahan folder font
+  app->res->font
+- activity_main.xml
+- string.xml
+- Penambahan Login.java & activity_login.xml
+  app-> java
+- Penambahan Register.java & activity_register.xml
+Edited : Rijal
