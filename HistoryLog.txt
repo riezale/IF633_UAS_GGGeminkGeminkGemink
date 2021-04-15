@@ -8,3 +8,8 @@ Update
   app-> java
 - Penambahan Register.java & activity_register.xml
 Edited : Rijal
+
+15 April 2021
+Change
+- Perubahan/penambahan codingan pada activity_main.xml dan activity_register.xml
+Edited : Rijal
