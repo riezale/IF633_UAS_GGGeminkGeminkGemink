@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">UASMobile</string><string name="Qilogram">Qilogram</string>
+    <string name="Login">Login</string>
+    <string name="Register">Register</string>
+    <string name="loginhead">Login</string>
+    <string name="regishead">Register</string>
+    <string name="loginuser">Username</string>
+    <string name="loginpass">Password</string>
+    <string name="emailregister">Email</string>
+    <string name="passwordregister">Password</string>
+    <string name="cpasswordregister">Confirm Password</string>
+    <string name="namad">First Name</string>
+    <string name="namab">Last Name</string>
+
+</resources>
