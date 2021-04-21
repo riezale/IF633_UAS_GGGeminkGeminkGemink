@@ -13,3 +13,9 @@ Edited : Rijal
 Change
 - Perubahan/penambahan codingan pada activity_main.xml dan activity_register.xml
 Edited : Rijal
+
+21 April 2021
+Update
+- penambahan Activity_Profile.xml dan Profile.java dan Home.java dan Activity_home.xml
+- Penambahan Firebase pada Register
+Edited : Leo
