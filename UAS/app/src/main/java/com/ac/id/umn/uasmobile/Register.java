@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -87,6 +88,8 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                SendUserToSetUpActivity();
+
                                 Toast.makeText(Register.this, "Anda Berhasil Register", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
@@ -98,5 +101,12 @@ public class Register extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void SendUserToSetUpActivity() {
+        Intent setupIntent = new Intent(Register.this, Login.class);
+        setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(setupIntent);
+        finish();
     }
 }
