@@ -19,3 +19,10 @@ Update
 - penambahan Activity_Profile.xml dan Profile.java dan Home.java dan Activity_home.xml
 - Penambahan Firebase pada Register
 Edited : Leo
+
+29 April 2021
+Update 
+- Tambah validasi login firebase
+Change 
+-Ubah username untuk login jadi pake email
+Edited: Niko
