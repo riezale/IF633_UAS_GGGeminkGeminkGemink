@@ -26,3 +26,8 @@ Update
 Change 
 -Ubah username untuk login jadi pake email
 Edited: Niko
+
+20 Mei 2021 
+Update 
+-Buat UI Profile
+Edited : Niko
