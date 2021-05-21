@@ -112,6 +112,7 @@ public class Register extends AppCompatActivity {
                                 user.put("name", FirstName);
                                 user.put("email",Email);
                                 user.put("username",Name);
+                                user.put("password",Password);
                                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
