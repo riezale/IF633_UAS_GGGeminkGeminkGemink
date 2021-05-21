@@ -65,11 +65,7 @@
         android:orientation="horizontal">
 
 
-        </RelativeLayout<
-
 
         </LinearLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>

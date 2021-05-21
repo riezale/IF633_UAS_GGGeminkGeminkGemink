@@ -5,24 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
+    public static final String TAG = "TAG";
     private EditText UserFirstName, UserLastName, UserEmail, UserName, UserPassword, UserConfirmPassword;
     private ImageView Register;
     private ProgressDialog loadingBar;
+    private FirebaseFirestore fstore;
+    String userID;
+
 
     private FirebaseAuth mAuth;
 
@@ -31,6 +44,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        fstore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         UserFirstName = (EditText) findViewById(R.id.textView2);
@@ -58,6 +72,7 @@ public class Register extends AppCompatActivity {
         String Name = UserName.getText().toString();
         String Password = UserPassword.getText().toString();
         String ConfirmPassword = UserConfirmPassword.getText().toString();
+
 
         if(TextUtils.isEmpty(FirstName)){
             Toast.makeText(this, "Tolong Masukan Nama Depan", Toast.LENGTH_SHORT).show();
@@ -91,6 +106,18 @@ public class Register extends AppCompatActivity {
                                 SendUserToSetUpActivity();
 
                                 Toast.makeText(Register.this, "Anda Berhasil Register", Toast.LENGTH_SHORT).show();
+                                userID = mAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = fstore.collection("user").document(userID);
+                                Map<String,Object> user = new HashMap<>();
+                                user.put("name", FirstName);
+                                user.put("email",Email);
+                                user.put("username",Name);
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "On Success: user profile is created for "+ userID );
+                                    }
+                                });
                                 loadingBar.dismiss();
                             }
                             else {

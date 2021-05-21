@@ -30,4 +30,10 @@ Edited: Niko
 20 Mei 2021 
 Update 
 -Buat UI Profile
+-Tambah ic_baseline menu,user.png
 Edited : Niko
+
+21 Mei 2021
+Update
+Tambahin firestore untuk database user dan perbaikin register
+Edited : Niko 
