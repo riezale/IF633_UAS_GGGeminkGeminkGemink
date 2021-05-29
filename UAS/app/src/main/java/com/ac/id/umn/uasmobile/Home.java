@@ -1,32 +1,110 @@
 package com.ac.id.umn.uasmobile;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity {
 
-    private Button KeProfile;
+    private ImageView KeProfile,KePost,KeFriend;
+    private TextView username;
+
+    private FirebaseFirestore fstore;
+    private String userID;
+    private FirebaseAuth mAuth;
+    private CircleImageView profileimg;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        KeProfile = (Button) findViewById(R.id.keprofile);
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        fstore = FirebaseFirestore.getInstance();
+        username = findViewById(R.id.usernamehome);
+        profileimg = findViewById(R.id.profile_image);
+        
+        
+
+        DocumentReference documentReference = fstore.collection("user").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                username.setText(documentSnapshot.getString("username"));
+            }
+        });
+        mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("user/" + mAuth.getCurrentUser().getUid() + "/logo.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                             @Override
+                                                             public void onSuccess(Uri uri) {
+                                                                 Picasso.get().load(uri).into(profileimg);
+                                                             }
+            });
+
+
+
+        KeProfile = findViewById(R.id.profile_bottom);
         KeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 keProfile();
             }
         });
+        KeFriend = findViewById(R.id.queue_bottom);
+        KeFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keFriend();
+            }
+        });
+        KePost = findViewById(R.id.post_bottom);
+        KePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kePost();
+            }
+        });
+    }
+
+
+    private void keFriend() {
+        Intent intent = new Intent(this, Friends.class);
+        startActivity(intent);
     }
 
     private void keProfile(){
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
+    }
+    private void kePost(){
+        Intent intent = new Intent(this, PostActivity.class);
+        startActivity(intent);
+
     }
 }

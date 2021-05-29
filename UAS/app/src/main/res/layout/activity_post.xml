@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".PostActivity">
+
+
+    <ImageButton
+        android:id="@+id/pencils"
+        android:layout_width="192dp"
+        android:layout_height="176dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="121dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="386dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/pencil" />
+
+    <EditText
+        android:id="@+id/descriptiontext"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="260dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="newpost"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnPosting"
+        android:layout_width="147dp"
+        android:layout_height="81dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="581dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="155dp"
+        android:text="@string/btnPosting" />
+
+    <ImageView
+        android:id="@+id/home_bottom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="676dp"
+        android:layout_marginEnd="305dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/ic_baseline_home"
+        android:title="home"
+        app:showAsAction="always" />
+
+    <ImageView
+        android:id="@+id/queue_bottom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="677dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_baseline_friend"
+        android:title="home"
+        app:showAsAction="always" />
+
+    <ImageView
+        android:id="@+id/profile_bottom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="676dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/ic_baseline_profile"
+        android:title="home"
+        app:showAsAction="always" />
+
+
+
+
+</RelativeLayout>

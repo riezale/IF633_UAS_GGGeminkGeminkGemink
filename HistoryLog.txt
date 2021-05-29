@@ -37,3 +37,8 @@ Edited : Niko
 Update
 Tambahin firestore untuk database user dan perbaikin register
 Edited : Niko 
+
+29 Mei 2021
+Update 
+Buat popup menu di profile dan AboutUs Page
+Edited : Niko
