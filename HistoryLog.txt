@@ -42,3 +42,8 @@ Edited : Niko
 Update 
 Buat popup menu di profile dan AboutUs Page
 Edited : Niko
+
+31 Mei 2021 
+Update
+Fixing Bug Button di emulator dan membuat fitur logout di popup menu
+Edited : Niko

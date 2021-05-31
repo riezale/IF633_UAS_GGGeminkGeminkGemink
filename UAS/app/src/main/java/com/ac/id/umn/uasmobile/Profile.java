@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,15 +33,16 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private TextView nama, email, username;
     private CircleImageView profileimg;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
     private String userID;
     private Button editprofile;
+    private ImageButton popupmenuicon;
     private StorageReference storageReference;
-    private ImageView KeProfile,KePost,KeFriend,KeHome,popupmenuicon;
+    private ImageView KePost, KeFriend, KeHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,32 +112,36 @@ public class Profile extends AppCompatActivity {
         });
 
         editprofile.setOnClickListener((v) -> {
-            Intent i = new Intent(v.getContext(),EditProfile.class);
+            Intent i = new Intent(v.getContext(), EditProfile.class);
             i.putExtra("name", nama.getText().toString());
-            i.putExtra("email",email.getText().toString());
+            i.putExtra("email", email.getText().toString());
             i.putExtra("username", username.getText().toString());
             startActivity(i);
-    });
-
-
-
+        });
     }
 
     private void showMenu(View v) {
-        PopupMenu popupmenu = new PopupMenu(Profile.this,v);
-        popupmenu.getMenuInflater().inflate(R.menu.popupmenu,popupmenu.getMenu());
-        popupmenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.aboutusbtn2)
-                    aboutus();
-                if (item.getItemId() == R.id.logoutbtn)
-                    Logout();
-                return false;
-            }
-
-        });
+        PopupMenu popupmenu = new PopupMenu(this, v);
+        popupmenu.inflate(R.menu.popupmenu);
+        popupmenu.setOnMenuItemClickListener(this);
+        popupmenu.show();
     }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.aboutusbtn2:
+                aboutus();
+                return true;
+            case R.id.logoutbtn:
+                Logout();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
 
     private void Logout() {
         mAuth.signOut();
