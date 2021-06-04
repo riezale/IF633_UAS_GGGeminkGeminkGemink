@@ -47,3 +47,8 @@ Edited : Niko
 Update
 Fixing Bug Button di emulator dan membuat fitur logout di popup menu
 Edited : Niko
+
+6 Juni 2021 
+Update 
+Buat timeline home 
+Edited : Niko

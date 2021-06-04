@@ -3,6 +3,8 @@ package com.ac.id.umn.uasmobile;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,10 +13,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -23,6 +33,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -36,6 +48,10 @@ public class Home extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private CircleImageView profileimg;
     private StorageReference storageReference;
+    private RecyclerView recyclerView;
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Post");
+    private PostAdapter adapter;
+    private ArrayList<Post> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +63,32 @@ public class Home extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
         username = findViewById(R.id.usernamehome);
         profileimg = findViewById(R.id.profile_image);
-        
-        
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        list = new ArrayList<>();
+        adapter = new PostAdapter(this, list);
+
+        recyclerView.setAdapter(adapter);
+
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Post model = dataSnapshot.getValue(Post.class);
+                    list.add(model);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         DocumentReference documentReference = fstore.collection("user").document(userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -61,9 +101,9 @@ public class Home extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference profileRef = storageReference.child("user/" + mAuth.getCurrentUser().getUid() + "/logo.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                             @Override
-                                                             public void onSuccess(Uri uri) {
-                                                                 Picasso.get().load(uri).into(profileimg);
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileimg);
                                                              }
             });
 

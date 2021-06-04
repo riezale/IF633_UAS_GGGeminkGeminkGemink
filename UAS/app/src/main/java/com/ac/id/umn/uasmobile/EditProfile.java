@@ -3,14 +3,18 @@ package com.ac.id.umn.uasmobile;
 import android.app.Activity;
 import android.app.DirectAction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     public static final String TAG = "TAG";
     EditText gantinama, gantiemail, gantiusername;
@@ -38,12 +42,12 @@ public class EditProfile extends AppCompatActivity {
     FirebaseFirestore fstore;
     FirebaseUser userID;
     Button savebtn;
-    ImageView gantigambar;
+    ImageView gantigambar, kotakFoto;
     StorageReference storageReference;
+    ImageButton popupmenuicon;
     private Button foto;
-    private ImageView kotakFoto;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    private DirectAction data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,16 @@ public class EditProfile extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
         userID = mAuth.getCurrentUser();
 
-        foto = findViewById(R.id.opencam);
+        popupmenuicon = findViewById(R.id.popupicon_editprofile);
+
+        popupmenuicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMenu(v);
+            }
+        });
         kotakFoto = findViewById(R.id.imguser2);
+        foto = findViewById(R.id.opencam);
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,9 +172,27 @@ public class EditProfile extends AppCompatActivity {
                 Uri imageUri = data.getData();
 
                 uploadimageToFirebase(imageUri);
-            }
+            }else if (requestcode == REQUEST_IMAGE_CAPTURE && resultcode == RESULT_OK) {
+                Uri bitmap = data.getData();
 
+                uploadPicturetoFirebase(bitmap);
+            }
         }
+    }
+
+    private void uploadPicturetoFirebase(Uri bitmap) {
+        final StorageReference fileRef = storageReference.child("user/"+mAuth.getCurrentUser().getUid()+"/logo.jpg");
+        fileRef.putFile(bitmap).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(kotakFoto);
+                    }
+                });
+            }
+        });
     }
 
     private void uploadimageToFirebase(Uri imageUri) {
@@ -173,7 +203,7 @@ public class EditProfile extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(kotakFoto);
+                        Picasso.get().load(uri).into(gantigambar);
                     }
                 });
             }
@@ -183,5 +213,38 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+    }
+    private void showMenu(View v) {
+        PopupMenu popupmenu = new PopupMenu(this, v);
+        popupmenu.inflate(R.menu.popupmenu);
+        popupmenu.setOnMenuItemClickListener(this);
+        popupmenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.aboutusbtn2:
+                aboutus();
+                return true;
+            case R.id.logoutbtn:
+                Logout();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
+
+    private void Logout() {
+        mAuth.signOut();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void aboutus() {
+        Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
     }
 }
