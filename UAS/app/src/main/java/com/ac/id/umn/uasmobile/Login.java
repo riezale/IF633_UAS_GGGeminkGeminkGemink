@@ -2,8 +2,11 @@ package com.ac.id.umn.uasmobile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -61,6 +64,16 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 sendUserToHome();
+                                String message = "You are Logged in Qilogram App";
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(Login.this )
+                                        .setSmallIcon(R.drawable.ic_baseline_message)
+                                        .setContentTitle("Qilogram")
+                                        .setContentText(message)
+                                        .setAutoCancel(true);
+                                NotificationManager notificationManager = (NotificationManager)getSystemService(
+                                        Context.NOTIFICATION_SERVICE
+                                );
+                                notificationManager.notify(0,builder.build());
                                 Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
                             }
                             else {
@@ -74,8 +87,10 @@ public class Login extends AppCompatActivity {
 
     private void sendUserToHome()
     {
+        String message = "Qilogram Login Success";
         Intent mainIntent = new Intent(Login.this, Home.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        mainIntent.putExtra("message",message);
         startActivity(mainIntent);
         finish();
     }

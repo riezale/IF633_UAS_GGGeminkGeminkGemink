@@ -68,7 +68,7 @@ public class Home extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
-        adapter = new PostAdapter(this, list);
+        adapter = new PostAdapter(this,list,Home.this);
 
         recyclerView.setAdapter(adapter);
 
