@@ -13,3 +13,47 @@ Edited : Rijal
 Change
 - Perubahan/penambahan codingan pada activity_main.xml dan activity_register.xml
 Edited : Rijal
+
+21 April 2021
+Update
+- penambahan Activity_Profile.xml dan Profile.java dan Home.java dan Activity_home.xml
+- Penambahan Firebase pada Register
+Edited : Leo
+
+29 April 2021
+Update 
+- Tambah validasi login firebase
+Change 
+-Ubah username untuk login jadi pake email
+Edited: Niko
+
+20 Mei 2021 
+Update 
+-Buat UI Profile
+-Tambah ic_baseline menu,user.png
+Edited : Niko
+
+21 Mei 2021
+Update
+Tambahin firestore untuk database user dan perbaikin register
+Edited : Niko 
+
+29 Mei 2021
+Update 
+Buat popup menu di profile dan AboutUs Page
+Edited : Niko
+
+31 Mei 2021 
+Update
+Fixing Bug Button di emulator dan membuat fitur logout di popup menu
+Edited : Niko
+
+4 Juni 2021 
+Update 
+Buat timeline home 
+Edited : Niko
+
+5 Juni 2021 
+Update 
+Buat Notification dan Download post 
+Edited : Niko

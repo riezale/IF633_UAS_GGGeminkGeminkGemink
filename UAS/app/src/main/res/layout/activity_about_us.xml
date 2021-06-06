@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".AboutUs"
     android:background="@drawable/cyan">
 
@@ -14,12 +15,23 @@
         android:text="About Us"
         android:textColor="@color/black"
         android:textSize="45dp"
+=======
+    tools:context=".AboutUs">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:textSize="45dp"
+        android:textColor="@color/black"
+>>>>>>> bb6847bead000aeb2f5251d76dc985eef88fe05b
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.064" />
 
+<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,4 +97,6 @@
 
 
 
+=======
+>>>>>>> bb6847bead000aeb2f5251d76dc985eef88fe05b
 </androidx.constraintlayout.widget.ConstraintLayout>

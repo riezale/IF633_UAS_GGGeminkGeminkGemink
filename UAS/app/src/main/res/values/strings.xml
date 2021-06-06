@@ -1,5 +1,9 @@
 <resources>
+<<<<<<< HEAD:UAS/app/src/main/res/values/strings.xml
     <string name="app_name">Qilogram</string>
+=======
+    <string name="app_name">UASMobile</string>
+>>>>>>> bb6847bead000aeb2f5251d76dc985eef88fe05b:UAS_Project/app/src/main/res/values/strings.xml
     <string name="Qilogram">Qilogram</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
