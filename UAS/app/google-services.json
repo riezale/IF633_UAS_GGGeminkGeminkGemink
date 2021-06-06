@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "879229584657",
+    "project_id": "project-uasmobile",
+    "storage_bucket": "project-uasmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879229584657:android:acdfcec43b250e3bd038b0",
+        "android_client_info": {
+          "package_name": "com.ac.id.umn.uasmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879229584657-mprjgut3jrg3f3cfvqbkkded41c0j8mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjzMk8mqc1bCVrFYM93zABXZodw9KfNqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879229584657-mprjgut3jrg3f3cfvqbkkded41c0j8mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879229584657:android:a2d81c67c837e058d038b0",
+        "android_client_info": {
+          "package_name": "umn.ac.id.uas_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879229584657-mprjgut3jrg3f3cfvqbkkded41c0j8mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjzMk8mqc1bCVrFYM93zABXZodw9KfNqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879229584657-mprjgut3jrg3f3cfvqbkkded41c0j8mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

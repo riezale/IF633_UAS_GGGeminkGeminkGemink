@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="390dp"
+    android:layout_height="150dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/blacklivemater">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/fotouser" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="user full name"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="15dp"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/userfullname"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="username"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/username"/>
+    </LinearLayout>
+
+</LinearLayout>
